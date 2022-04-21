@@ -1,0 +1,30 @@
+version: "3.8"
+
+services:
+  postgresqldb:
+    image: postgres:14.0
+    restart: unless-stopped
+    env_file: ./.env
+    environment:
+       POSTGRES_DB: '$DB_NAME'
+       POSTGRES_USER: '$DB_USER'
+       POSTGRES_PASSWORD: '$DB_PASSWORD'
+    ports:
+    - '$DB_LOCAL_PORT:$DB_DOCKER_PORT'
+
+  app:
+    depends_on:
+      - postgresqldb
+    image: rommelua/docker-app
+    build: .
+    env_file: ./.env
+    ports:
+      - '$SPRING_LOCAL_PORT:$SPRING_DOCKER_PORT'
+    environment:
+      SPRING_APPLICATION_JSON: '{
+        "spring.datasource.url" : "jdbc:postgresql://host.docker.internal:$DB_LOCAL_PORT/$DB_NAME?createDatabaseIfNotExist=true",
+        "spring.datasource.username" : "$DB_USER",
+        "spring.datasource.password" : "$DB_PASSWORD",
+        "spring.jpa.database-platform" : "org.hibernate.dialect.PostgreSQL10Dialect",
+        "spring.jpa.hibernate.ddl-auto" : "validate"
+      }'

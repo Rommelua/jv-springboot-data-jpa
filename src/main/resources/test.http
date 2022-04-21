@@ -1,0 +1,40 @@
+### Save new manufacturer
+POST http://localhost:6868/manufacturers
+Content-Type: application/json
+
+{
+  "name": "XIAOMI"
+}
+
+### Save new phone
+POST http://localhost:6868/phones
+Content-Type: application/json
+
+{
+  "title": "Mi 10",
+  "price": 11500,
+  "manufacturerId": 3
+}
+
+### Get Product by id
+GET http://localhost:8081/phones?id=5
+
+### Update phone
+PUT http://localhost:8080/phones?id=1
+Content-Type: application/json
+
+{
+  "title": "Galaxy S10",
+  "price": 9999,
+  "manufacturerId": 1
+}
+
+### Get by price between
+GET http://localhost:8080/phones/price-between?from=10000&to=12000
+
+### Search by params
+GET http://localhost:8080/phones/search?manufacturerIn=1,3&titleContains=10
+
+#####################      SORT-PAGE      ######################
+GET http://localhost:8080/phones/all?page=0&size=15&sortBy=manufacturer.name;price:DESC;title
+
