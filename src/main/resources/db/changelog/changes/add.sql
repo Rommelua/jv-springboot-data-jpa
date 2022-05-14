@@ -8,8 +8,8 @@ CREATE TABLE IF NOT EXISTS manufacturers
     name VARCHAR(255)
 );
 
-ALTER TABLE manufacturers
-    OWNER TO postgres;
+-- ALTER TABLE manufacturers
+--     OWNER TO postgres;
 
 CREATE TABLE IF NOT EXISTS phones
 (
@@ -23,8 +23,8 @@ CREATE TABLE IF NOT EXISTS phones
             REFERENCES manufacturers
 );
 
-ALTER TABLE phones
-    OWNER TO postgres;
+-- ALTER TABLE phones
+--     OWNER TO postgres;
 
 INSERT INTO manufacturers (name) VALUES
        ('SAMSUNG'), ('APPLE');
