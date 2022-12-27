@@ -1,4 +1,11 @@
 # Spring Data JPA
+Для HEROKU:
+Потрібно в корені проекту створити файл system.properties
+І прописати рядок
+java.runtime.version=11
+Якщо у вас 11 версія jdk
+
+
 
 Your task is:
 - add required dependencies

@@ -38,3 +38,7 @@ GET http://localhost:8080/phones/search?manufacturerIn=1,3&titleContains=10
 #####################      SORT-PAGE      ######################
 GET http://localhost:8080/phones/all?page=0&size=15&sortBy=manufacturer.name;price:DESC;title
 
+###
+GET http://localhost:8080/phones/all?sortBy=^.*[eva].*$
+
+
